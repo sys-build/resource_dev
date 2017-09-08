@@ -1,0 +1,22 @@
+all:
+	rm -rf ../out
+	make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=../out defconfig
+	make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=../out -j4 Image
+	make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=../out -j4 modules
+	
+build:
+	rm -rf ../out
+	make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=../out defconfig
+	make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=../out -j4 Image
+
+rebuild:
+	make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=../out defconfig
+	make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=../out -j4 Image
+
+modules:
+	make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=../out defconfig
+	make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=../out -j4 modules
+
+install_ko:
+	mkdir -p ../out_ft2
+	find ../out/drivers/ft2_kernel/ -name "*.ko" -exec cp {} ../out_ft2 \;
