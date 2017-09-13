@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 f = open('vmlinux_fun_filename.txt', 'r')
+fw = open('vmlinux_sym_sorted.txt', 'w')
 i = 0
 my_dict = {}
 
@@ -15,7 +16,13 @@ for line in f:
 
 f.closed
 
-sorted(my_dict.keys())
-for k, v in my_dict.items():
-	print k, v
+keys = my_dict.keys()
+keys.sort()
+for key in keys:
+	fw.write(key)
+	fw.write(' ')
+	fw.write(my_dict[key])
+	fw.write('\n')
+
+fw.closed
 
